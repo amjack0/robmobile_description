@@ -1,0 +1,347 @@
+<?xml version="1.0" ?>
+<robot name="robmobile" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find robmobile_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find robmobile_description)/urdf/robmobile.trans" />
+<xacro:include filename="$(find robmobile_description)/urdf/robmobile.gazebo" />
+
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.325 0 0.625"/> <!-- COM: CHECK : Update 0.625 -->
+    <mass value="57.27200"/>
+    <inertia ixx="0.038876" ixy="1.3e-05" ixz="2e-06" iyy="0.047513" iyz="0.000485" izz="0.084083"/> <!-- Update as per new CAD -->
+  </inertial>
+  <visual>
+    <origin rpy="0 0 1.570796" xyz="0.325 0 0.625"/> <!-- COM: CHECK : Update 0.625 -->
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 1.570796" xyz="0.325 0 0.625"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="l_wheel">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/> <!-- Update -->
+    <mass value="0.74"/>
+    <inertia ixx="0.000334" ixy="0.0" ixz="0.0" iyy="0.000332" iyz="-0.0" izz="0.000332"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.65 0 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="blue"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.65 0 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="l_wheel_joint" type="continuous">
+  <origin rpy="0 0 1.570796" xyz="-0.325 0 -0.105"/>
+  <parent link="base_link"/>
+  <child link="l_wheel"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<link name="r_wheel">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="0.74"/>
+    <inertia ixx="0.000334" ixy="0.0" ixz="0.0" iyy="0.000332" iyz="-0.0" izz="0.000332"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.65 0 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="blue"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.65 0 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="r_wheel_joint" type="continuous">
+  <origin rpy="0 0 1.570796" xyz="0.325 0 -0.105"/>
+  <parent link="base_link"/>
+  <child link="r_wheel"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+</joint>
+
+
+<link name="lf_swivel"> <!-- under change -->
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="0.5420"/>
+    <inertia ixx="7e-06" ixy="0.0" ixz="0.0" iyy="8e-06" iyz="1e-06" izz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.07 -0.45 0.655"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_swivel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.07 -0.45 0.655"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_swivel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="lf_swivel_joint" type="continuous">
+  <origin rpy="0 0 1.570796" xyz="-0.25 0.45 -0.03"/>
+  <parent link="base_link"/>
+  <child link="lf_swivel"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+</joint>
+
+
+<link name="rf_swivel">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="0.5420"/>
+    <inertia ixx="7e-06" ixy="0.0" ixz="0.0" iyy="8e-06" iyz="1e-06" izz="9e-06"/>
+  </inertial>
+  <visual> 
+    <origin rpy="0 0 0" xyz="0.07 -0.45 0.655"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_swivel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.07 -0.45 0.655"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_swivel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="rf_swivel_joint" type="continuous">
+  <origin rpy="0 0 1.570796" xyz="0.25 0.45 -0.03"/>
+  <parent link="base_link"/>
+  <child link="rf_swivel"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+</joint>
+
+
+<link name="rb_swivel">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="0.5420"/>
+    <inertia ixx="7e-06" ixy="0.0" ixz="0.0" iyy="8e-06" iyz="1e-06" izz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.07 -0.45 0.655"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_swivel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.07 -0.45 0.655"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_swivel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="rb_swivel_joint" type="continuous">
+  <origin rpy="0 0 1.570796" xyz="0.25 -0.45 -0.03"/>
+  <parent link="base_link"/>
+  <child link="rb_swivel"/>
+  <axis xyz="0.0 0.0 1.0"/>
+</joint>
+
+
+<link name="lb_swivel">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="0.5420"/>
+    <inertia ixx="7e-06" ixy="0.0" ixz="0.0" iyy="8e-06" iyz="1e-06" izz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.07 -0.45 0.655"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_swivel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.07 -0.45 0.655"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_swivel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="lb_swivel_joint" type="continuous">
+  <origin rpy="0 0 1.570796" xyz="-0.25 -0.45 -0.03"/>
+  <parent link="base_link"/>
+  <child link="lb_swivel"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+</joint>
+
+
+<link name="rf_caster_wheel">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.16000038883518655 -1.6368920854881175e-07 -7.028809271419911e-08"/>
+    <mass value="0.1890"/>
+    <inertia ixx="1.2e-05" ixy="-0.0" ixz="0.0" iyy="7e-06" iyz="0.0" izz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.11 -0.45 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="blue"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.11 -0.45 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="rf_caster_wheel_joint" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.04 0.0 -0.075"/>
+  <parent link="rf_swivel"/>
+  <child link="rf_caster_wheel"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+
+<link name="lf_caster_wheel">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.16000038883518655 -1.6368920854881175e-07 -7.028809271419911e-08"/>
+    <mass value="0.1890"/>
+    <inertia ixx="1.2e-05" ixy="-0.0" ixz="0.0" iyy="7e-06" iyz="0.0" izz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.11 -0.45 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="blue"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.11 -0.45 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="lf_caster_wheel_joint" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.04 0.0 -0.075"/>
+  <parent link="lf_swivel"/>
+  <child link="lf_caster_wheel"/>
+  <axis xyz="-1.0 0.0 0.0"/>
+</joint>
+
+
+<link name="rb_caster_wheel">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="0.1890"/>
+    <inertia ixx="1.2e-05" ixy="-0.0" ixz="0.0" iyy="7e-06" iyz="0.0" izz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.11 -0.45 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="blue"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.11 -0.45 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="rb_caster_wheel_joint" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.04 0.0 -0.075"/>
+  <parent link="rb_swivel"/>
+  <child link="rb_caster_wheel"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+
+<link name="lb_caster_wheel">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/> <!-- change sign for direction -->
+    <mass value="0.1890"/>
+    <inertia ixx="1.2e-05" ixy="-0.0" ixz="0.0" iyy="7e-06" iyz="0.0" izz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.11 -0.45 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="blue"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.11 -0.45 0.73"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="lb_caster_wheel_joint" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.04 0.0 -0.075"/>
+  <parent link="lb_swivel"/>
+  <child link="lb_caster_wheel"/>
+  <axis xyz="-1.0 0.0 0.0"/>  <!-- IMP: Update -->
+  <dynamics damping="0"/>
+</joint>
+
+
+<link name="lidar_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="0.1900"/>
+    <inertia ixx="2.5e-05" ixy="1e-06" ixz="0.0" iyy="2.5e-05" iyz="0.0" izz="4.4e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.0 0.0 -0.074"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/LiDAR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robmobile_description/meshes/LiDAR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="lidar" type="fixed"> <!-- Update -->
+  <origin rpy="0 0 3.141592" xyz="0.0 0.15 0.642"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+  <!--axis xyz="0.0 0.0 1.0"/-->
+</joint>
+
+</robot>
