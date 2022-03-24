@@ -12,14 +12,14 @@
     <inertia ixx="0.038876" ixy="1.3e-05" ixz="2e-06" iyy="0.047513" iyz="0.000485" izz="0.084083"/> <!-- Update as per new CAD -->
   </inertial>
   <visual>
-    <origin rpy="0 0 1.570796" xyz="0.325 0 0.625"/> <!-- COM: CHECK : Update 0.625 -->
+    <origin rpy="0 0 0" xyz="0.325 0 0.625"/> <!-- COM: CHECK : Update 0.625 -->
     <geometry>
       <mesh filename="package://robmobile_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin rpy="0 0 1.570796" xyz="0.325 0 0.625"/>
+    <origin rpy="0 0 0" xyz="0.325 0 0.625"/>
     <geometry>
       <mesh filename="package://robmobile_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
@@ -48,7 +48,7 @@
 </link>
 
 <joint name="l_wheel_joint" type="continuous">
-  <origin rpy="0 0 1.570796" xyz="-0.325 0 -0.105"/>
+  <origin rpy="0 0 0" xyz="-0.325 0 -0.105"/>
   <parent link="base_link"/>
   <child link="l_wheel"/>
   <axis xyz="1.0 0.0 0.0"/>
@@ -61,14 +61,14 @@
     <inertia ixx="0.000334" ixy="0.0" ixz="0.0" iyy="0.000332" iyz="-0.0" izz="0.000332"/>
   </inertial>
   <visual>
-    <origin rpy="0 0 0" xyz="-0.65 0 0.73"/>
+    <origin rpy="0 0 3.14159" xyz="-0.65 0 0.73"/>
     <geometry>
       <mesh filename="package://robmobile_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="blue"/>
   </visual>
   <collision>
-    <origin rpy="0 0 0" xyz="-0.65 0 0.73"/>
+    <origin rpy="0 0 3.14159" xyz="-0.65 0 0.73"/>
     <geometry>
       <mesh filename="package://robmobile_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
     </geometry>
@@ -76,7 +76,7 @@
 </link>
 
 <joint name="r_wheel_joint" type="continuous">
-  <origin rpy="0 0 1.570796" xyz="0.325 0 -0.105"/>
+  <origin rpy="0 0 0" xyz="0.325 0 -0.105"/>
   <parent link="base_link"/>
   <child link="r_wheel"/>
   <axis xyz="1.0 0.0 -0.0"/>
@@ -105,7 +105,7 @@
 </link>
 
 <joint name="lf_swivel_joint" type="continuous">
-  <origin rpy="0 0 1.570796" xyz="-0.25 0.45 -0.03"/>
+  <origin rpy="0 0 0" xyz="-0.25 0.45 -0.03"/>
   <parent link="base_link"/>
   <child link="lf_swivel"/>
   <axis xyz="0.0 -0.0 1.0"/>
@@ -134,7 +134,7 @@
 </link>
 
 <joint name="rf_swivel_joint" type="continuous">
-  <origin rpy="0 0 1.570796" xyz="0.25 0.45 -0.03"/>
+  <origin rpy="0 0 0" xyz="0.25 0.45 -0.03"/>
   <parent link="base_link"/>
   <child link="rf_swivel"/>
   <axis xyz="0.0 -0.0 1.0"/>
@@ -163,10 +163,10 @@
 </link>
 
 <joint name="rb_swivel_joint" type="continuous">
-  <origin rpy="0 0 1.570796" xyz="0.25 -0.45 -0.03"/>
+  <origin rpy="0 0 0" xyz="0.25 -0.45 -0.03"/>
   <parent link="base_link"/>
   <child link="rb_swivel"/>
-  <axis xyz="0.0 0.0 1.0"/>
+  <axis xyz="0.0 -0.0 1.0"/>
 </joint>
 
 
@@ -192,7 +192,7 @@
 </link>
 
 <joint name="lb_swivel_joint" type="continuous">
-  <origin rpy="0 0 1.570796" xyz="-0.25 -0.45 -0.03"/>
+  <origin rpy="0 0 0" xyz="-0.25 -0.45 -0.03"/>
   <parent link="base_link"/>
   <child link="lb_swivel"/>
   <axis xyz="0.0 -0.0 1.0"/>
@@ -224,7 +224,7 @@
   <origin rpy="0 0 0" xyz="-0.04 0.0 -0.075"/>
   <parent link="rf_swivel"/>
   <child link="rf_caster_wheel"/>
-  <axis xyz="1.0 0.0 0.0"/>
+  <axis xyz="0.0 1.0 0.0"/>
 </joint>
 
 
@@ -253,7 +253,7 @@
   <origin rpy="0 0 0" xyz="-0.04 0.0 -0.075"/>
   <parent link="lf_swivel"/>
   <child link="lf_caster_wheel"/>
-  <axis xyz="-1.0 0.0 0.0"/>
+  <axis xyz="0.0 1.0 0.0"/>
 </joint>
 
 
@@ -282,7 +282,7 @@
   <origin rpy="0 0 0" xyz="-0.04 0.0 -0.075"/>
   <parent link="rb_swivel"/>
   <child link="rb_caster_wheel"/>
-  <axis xyz="1.0 0.0 0.0"/>
+  <axis xyz="0.0 1.0 0.0"/>
 </joint>
 
 
@@ -311,7 +311,7 @@
   <origin rpy="0 0 0" xyz="-0.04 0.0 -0.075"/>
   <parent link="lb_swivel"/>
   <child link="lb_caster_wheel"/>
-  <axis xyz="-1.0 0.0 0.0"/>  <!-- IMP: Update -->
+  <axis xyz="0.0 1.0 0.0"/>  <!-- IMP: Update -->
   <dynamics damping="0"/>
 </joint>
 
@@ -338,10 +338,10 @@
 </link>
 
 <joint name="lidar" type="fixed"> <!-- Update -->
-  <origin rpy="0 0 3.141592" xyz="0.0 0.15 0.642"/>
+  <origin rpy="1.570796 0 -1.570796" xyz="0.0 0.15 0.642"/> <!-- 0 0 3.141592 -->
   <parent link="base_link"/>
-  <child link="lidar_1"/>
-  <!--axis xyz="0.0 0.0 1.0"/-->
+  <child link="lidar_1"/>       
+  <!--axis xyz="0.0 0.0 1.0"/-->     <!-- comment this line too -->
 </joint>
 
 </robot>
